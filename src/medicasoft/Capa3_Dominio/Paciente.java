@@ -1,11 +1,7 @@
 package medicasoft.Capa3_Dominio;
 
 
-/**
- * @author gesti
- * @version 1.0
- * @created 10-jun.-2022 22:36:38
- */
+
 public class Paciente {
 
 	private String DNI;

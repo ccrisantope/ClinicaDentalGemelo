@@ -6,10 +6,7 @@ import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
         
 
-/**
- *
- * @author Lizeth
- */
+
 public class ventana_Registrar_Dentista extends javax.swing.JFrame {
 
     private RegistrarDentistaServicio registrarDentistaServicio;

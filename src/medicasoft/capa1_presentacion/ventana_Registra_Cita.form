@@ -184,15 +184,6 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cbotipocita">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Curaci&#xf3;n"/>
-            <StringItem index="1" value="Extracci&#xf3;n"/>
-            <StringItem index="2" value="Profilaxis"/>
-            <StringItem index="3" value="Ortodoncia"/>
-            <StringItem index="4" value=""/>
-          </StringArray>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="TIPO DE CITA:"/>

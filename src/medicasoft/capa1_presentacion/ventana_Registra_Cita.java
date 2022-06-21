@@ -4,23 +4,23 @@ import medicasoft.capa2_aplicacion.RegistraCitaServicio;
 import medicasoft.Capa3_Dominio.Paciente;
 import medicasoft.Capa3_Dominio.Dentista;
 import medicasoft.Capa3_Dominio.Cita;
+import medicasoft.Capa3_Dominio.TipoCita;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import medicasoft.Capa3_Dominio.TipoCita;
 
-/**
- *
- * @author Lizeth
- */
 public class ventana_Registra_Cita extends javax.swing.JFrame {
 
     private Cita cita;
     private RegistraCitaServicio registrarCitaServicio;
-
+    
     public ventana_Registra_Cita(java.awt.Frame parent, boolean modal) {
        //  super(parent, modal);
         initComponents();
+        //Carga de Combobox
+       
         inicializarNuevoCita();
     }
 
@@ -66,7 +66,6 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
             }
         });
 
-        cbotipocita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Curación", "Extracción", "Profilaxis", "Ortodoncia", "" }));
         cbotipocita.setBorder(javax.swing.BorderFactory.createTitledBorder("TIPO DE CITA:"));
         cbotipocita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +266,13 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  private void inicializarNuevoCita() {
         registrarCitaServicio = new RegistraCitaServicio();
+         try {
+            System.out.println("PRE");
+            registrarCitaServicio.listarTipoCita(cbotipocita);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar combobox", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         cita = new Cita();
         txtcodigo.requestFocus();
         txtcodigo.setText("");
@@ -337,7 +343,21 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
     }//GEN-LAST:event_cbodescuentoActionPerformed
 
     private void cbotipocitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipocitaActionPerformed
-        // TODO add your handling code here:
+        if(cbotipocita.getSelectedIndex()!=0){
+            String indice= cbotipocita.getSelectedItem().toString();
+            
+        try {
+            System.out.println("PRE");
+            TipoCita tp =registrarCitaServicio.BuscarTipoCita(indice);
+            cita.setM_TipoCita(tp);
+            txtcosto.setText(String.format("%.2f",registrarCitaServicio.buscarTarifa(tp.getDescripcion())));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar monto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        }
+        
     }//GEN-LAST:event_cbotipocitaActionPerformed
     private void guardarCita() throws Exception, HeadlessException {
         registrarCitaServicio.GuadarCita(cita);
@@ -352,15 +372,17 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         cita.setCodigo(txtcodigo.getText().trim());
         cita.setCosto(Double.parseDouble(txtcosto.getText().trim()));
         cita.setDescuento(Double.parseDouble(cbodescuento.getSelectedItem().toString()));
-        cita.setTipodecita(cbotipocita.getSelectedItem().toString());
+
         cita.setObservacion(txtobservacion.getText().trim());
         cita.setHora(hour);
-        System.out.println("asdasd"+cita.getHora());
+        
         cita.setFecha(cdfecha.getDate());
-        System.out.println(cita.getFecha());
+        
         cita.m_Paciente.setDNI(txtdnipaciente.getText());
         cita.m_Dentista.setCodigo(txtcodigodentista.getText());
-        System.out.println(cita.toString());
+        cita.m_TipoCita.setDescripcion("profilaxis");//cbotipocita.getSelectedItem().toString());
+        
+        //System.out.println(cita.toString());
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -3,10 +3,7 @@ package medicasoft.capa1_presentacion;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author Lizeth
- */
+
 public class VentanaMenu extends javax.swing.JFrame {
 
     /**

@@ -8,10 +8,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import medicasoft.Capa3_Dominio.Cita;
 
-/**
- *
- * @author Lizeth
- */
 public class ventana_Registrar_Paciente extends javax.swing.JFrame {
 
      private RegistraPacienteServicio registrarPacienteServicio;

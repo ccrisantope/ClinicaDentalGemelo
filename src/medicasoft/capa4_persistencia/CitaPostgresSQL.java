@@ -10,11 +10,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
 
-/**
- * @author Lizeth
- * @version 1.0
- * @created 10-jun.-2022 22:36:38
- */
+
 public class CitaPostgresSQL {
 
     private AccesoDatosJDBC accesoDatosJDBC;
@@ -24,26 +20,30 @@ public class CitaPostgresSQL {
     }
 
     public void guardar(Cita cita) throws Exception {
-        String insertSQL = "insert into cita(codigo,costo,descuento,fecha,observacion,tipodecita,dnipaciente,codigodentista,hora) values(?,?,?,?,?,?,?,?,?)";
+        String insertSQL = "insert into cita(codigo,costo,descuento,fecha,observacion,tipocita,dnipaciente,codigodentista,hora) values(?,?,?,?,?,?,?,?,?)";
         
         Date fec= new Date(cita.getFecha().getTime());
         Time hora= new Time(cita.getHora().getTime());
         fec.toString();
+        System.out.println(cita.toString());
         System.out.println(fec.toString());
-        
+        System.out.println(cita.toString());
         PreparedStatement sentencia;
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(insertSQL);
+            
             sentencia.setString(1, cita.getCodigo());
             sentencia.setDouble(2, cita.getCosto());
             sentencia.setDouble(3, cita.getDescuento());
             sentencia.setDate(4, fec);
             sentencia.setString(5, cita.getObservacion());
-            sentencia.setString(6, cita.getTipodecita());
+            sentencia.setString(6, cita.m_TipoCita.getDescripcion());
             sentencia.setString(7, cita.m_Paciente.getDNI());
             sentencia.setString(8, cita.m_Dentista.getCodigo());
+            
             System.out.println(sentencia.toString());
             sentencia.setTime(9,hora);
+            
             System.out.println(sentencia.toString());
             String word=sentencia.toString();
             sentencia.executeLargeUpdate();
@@ -72,7 +72,7 @@ public class CitaPostgresSQL {
     }
 
     public Cita buscar(String codigo) throws Exception {
-        String consultaSQL = "select codigo,costo, descuento,fecha, hora,observacion,tipodecita" + "from cita where codigo = ?";
+        String consultaSQL = "select codigo,costo, descuento,fecha, hora,observacion,tipocita" + "from cita where codigo = ?";
         PreparedStatement sentencia;
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
@@ -85,7 +85,7 @@ public class CitaPostgresSQL {
                 cita.setFecha(resultado.getDate("Fecha"));
                 cita.setHora(resultado.getTime("Hora"));
                 cita.setObservacion(resultado.getString("observacion"));
-                cita.setTipodecita(resultado.getString("tipodecita"));
+                
                 
                 return cita;
             } else {
