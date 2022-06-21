@@ -7,6 +7,7 @@ public class Cita {
     private String codigo;
     private double costo;
     private double descuento;
+    private double montototal;
     private Date hora;
     private Date Fecha;
     private String observacion;
@@ -17,10 +18,11 @@ public class Cita {
 
     }
 
-    public Cita(String codigo, double costo, double descuento, Date hora, Date Fecha, String observacion,  Paciente m_Paciente, Dentista m_Dentista, TipoCita m_TipoCita) {
+    public Cita(String codigo, double costo, double descuento, double montototal, Date hora, Date Fecha, String observacion, Paciente m_Paciente, Dentista m_Dentista, TipoCita m_TipoCita) {
         this.codigo = codigo;
         this.costo = costo;
         this.descuento = descuento;
+        this.montototal = montototal;
         this.hora = hora;
         this.Fecha = Fecha;
         this.observacion = observacion;
@@ -29,6 +31,7 @@ public class Cita {
         this.m_TipoCita = m_TipoCita;
     }
 
+  
   
 
     public String getCodigo() {
@@ -92,6 +95,14 @@ public class Cita {
         return m_Dentista;
     }
 
+    public double getMontototal() {
+        return montototal;
+    }
+
+    public void setMontototal(double montototal) {
+        this.montototal = montototal;
+    }
+
     public void setM_Dentista(Dentista m_Dentista) {
         this.m_Dentista = m_Dentista;
     }
@@ -113,9 +124,9 @@ public class Cita {
     }
 
   
-    public double calcularcostocitatotal() {
-       double costoTotalDeCita = (costo - descuento)  ;
-        return costoTotalDeCita;
+    public void calcularcostocitatotal() {
+       montototal = (costo - ((descuento*costo)/100));
+        
     }
 
     public boolean disponibilidaddehorario() {

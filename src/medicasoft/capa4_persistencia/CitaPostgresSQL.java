@@ -20,7 +20,7 @@ public class CitaPostgresSQL {
     }
 
     public void guardar(Cita cita) throws Exception {
-        String insertSQL = "insert into cita(codigo,costo,descuento,fecha,observacion,tipocita,dnipaciente,codigodentista,hora) values(?,?,?,?,?,?,?,?,?)";
+        String insertSQL = "insert into cita(codigo,costo,descuento,fecha,observacion,tipocita,dnipaciente,codigodentista,hora,montototal) values(?,?,?,?,?,?,?,?,?,?)";
         
         Date fec= new Date(cita.getFecha().getTime());
         Time hora= new Time(cita.getHora().getTime());
@@ -43,6 +43,7 @@ public class CitaPostgresSQL {
             
             System.out.println(sentencia.toString());
             sentencia.setTime(9,hora);
+            sentencia.setDouble(10,cita.getMontototal());
             
             System.out.println(sentencia.toString());
             String word=sentencia.toString();

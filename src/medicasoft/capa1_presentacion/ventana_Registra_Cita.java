@@ -32,7 +32,6 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
         txtcosto = new javax.swing.JTextField();
-        cbodescuento = new javax.swing.JComboBox<>();
         cbotipocita = new javax.swing.JComboBox<>();
         txtobservacion = new javax.swing.JTextField();
         btnguardar = new javax.swing.JButton();
@@ -48,23 +47,23 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         btnbuscardentista = new javax.swing.JButton();
         txtcodigodentista = new javax.swing.JTextField();
         txthora = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        txtDescuento = new javax.swing.JTextField();
+        txtMontoTotal1 = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("REGISTRAR CITA");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         txtcodigo.setBorder(javax.swing.BorderFactory.createTitledBorder("CODIGO:"));
+        getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 156, -1));
 
         txtcosto.setBorder(javax.swing.BorderFactory.createTitledBorder("COSTO:"));
-
-        cbodescuento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DESCUENTO", "20", "25" }));
-        cbodescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbodescuentoActionPerformed(evt);
-            }
-        });
+        getContentPane().add(txtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 156, -1));
 
         cbotipocita.setBorder(javax.swing.BorderFactory.createTitledBorder("TIPO DE CITA:"));
         cbotipocita.addActionListener(new java.awt.event.ActionListener() {
@@ -72,8 +71,10 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
                 cbotipocitaActionPerformed(evt);
             }
         });
+        getContentPane().add(cbotipocita, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 156, -1));
 
         txtobservacion.setBorder(javax.swing.BorderFactory.createTitledBorder("OBSERVACION:"));
+        getContentPane().add(txtobservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 519, 65));
 
         btnguardar.setText("GUARDAR");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +82,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
                 btnguardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnguardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 600, -1, -1));
 
         btnmodificar.setText("MODIFICAR");
         btnmodificar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +90,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
                 btnmodificarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, -1, -1));
 
         btnsalir.setText("SALIR");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +98,10 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
                 btnsalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 600, -1, -1));
 
         cdfecha.setBorder(javax.swing.BorderFactory.createTitledBorder("CALENDARIO:"));
+        getContentPane().add(cdfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 136, -1));
 
         txtdnipaciente.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI DEL PACIENTE:"));
 
@@ -116,24 +121,26 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnbuuscarpaciente)
                 .addGap(89, 89, 89))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(txtnombrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuuscarpaciente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtnombrepaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 530, -1));
 
         txtnombredentista.setEditable(false);
         txtnombredentista.setBorder(javax.swing.BorderFactory.createTitledBorder("NOMBRE DEL DENTISTA:"));
@@ -175,94 +182,31 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, -1));
+
         txthora.setBorder(javax.swing.BorderFactory.createTitledBorder("HORA:"));
+        getContentPane().add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 118, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(30, 30, 30)
-                                            .addComponent(btnmodificar)
-                                            .addGap(139, 139, 139)
-                                            .addComponent(btnguardar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnsalir))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 105, Short.MAX_VALUE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtcosto, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cdfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(cbotipocita, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbodescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txthora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(113, 113, 113)))))))
-                .addGap(58, 58, 58))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(cbotipocita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbodescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cdfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txthora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnmodificar)
-                            .addComponent(btnguardar))
-                        .addContainerGap(107, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnsalir)
-                        .addGap(68, 68, 68))))
-        );
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, -1, -1));
 
-        pack();
+        txtDescuento.setBorder(javax.swing.BorderFactory.createTitledBorder("DESCUENTO(%)"));
+        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, -1));
+
+        txtMontoTotal1.setBorder(javax.swing.BorderFactory.createTitledBorder("Monto Total:"));
+        getContentPane().add(txtMontoTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 510, 135, -1));
+
+        setSize(new java.awt.Dimension(785, 700));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  private void inicializarNuevoCita() {
         registrarCitaServicio = new RegistraCitaServicio();
@@ -277,7 +221,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         txtcodigo.requestFocus();
         txtcodigo.setText("");
         txtcosto.setText("");
-        cbodescuento.setSelectedIndex(0);
+        
         cbotipocita.setSelectedIndex(0);
         txtobservacion.setText("");
         txtdnipaciente.setText("");
@@ -285,6 +229,8 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         btnbuuscarpaciente.setEnabled(true);
         txtnombredentista.setText("");
         btnbuscardentista.setEnabled(true);
+        txtDescuento.setText("0");
+        txtDescuento.setEnabled(false);
     }
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         try {
@@ -338,10 +284,6 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnbuscardentistaActionPerformed
 
-    private void cbodescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbodescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbodescuentoActionPerformed
-
     private void cbotipocitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipocitaActionPerformed
         if(cbotipocita.getSelectedIndex()!=0){
             String indice= cbotipocita.getSelectedItem().toString();
@@ -359,6 +301,19 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cbotipocitaActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(jCheckBox1.isSelected())
+            txtDescuento.setEnabled(true);
+        else{
+            txtDescuento.setText("0");
+            txtDescuento.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoActionPerformed
     private void guardarCita() throws Exception, HeadlessException {
         registrarCitaServicio.GuadarCita(cita);
         JOptionPane.showMessageDialog(this, "Se guardo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -371,7 +326,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         Date hour = new SimpleDateFormat("HH:mm").parse(sc);
         cita.setCodigo(txtcodigo.getText().trim());
         cita.setCosto(Double.parseDouble(txtcosto.getText().trim()));
-        cita.setDescuento(Double.parseDouble(cbodescuento.getSelectedItem().toString()));
+        cita.setDescuento(Double.parseDouble(txtDescuento.getText()));
 
         cita.setObservacion(txtobservacion.getText().trim());
         cita.setHora(hour);
@@ -380,7 +335,9 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         
         cita.m_Paciente.setDNI(txtdnipaciente.getText());
         cita.m_Dentista.setCodigo(txtcodigodentista.getText());
-        cita.m_TipoCita.setDescripcion("profilaxis");//cbotipocita.getSelectedItem().toString());
+        cita.m_TipoCita.setDescripcion(cbotipocita.getSelectedItem().toString());
+        cita.calcularcostocitatotal();
+        txtMontoTotal1.setText(String.format("%.2f", cita.getMontototal()));
         
         //System.out.println(cita.toString());
         }catch(Exception e){
@@ -411,13 +368,15 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> cbodescuento;
     private javax.swing.JComboBox<String> cbotipocita;
     private com.toedter.calendar.JDateChooser cdfecha;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtDescuento;
+    private javax.swing.JTextField txtMontoTotal1;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtcodigodentista;
     private javax.swing.JTextField txtcosto;
