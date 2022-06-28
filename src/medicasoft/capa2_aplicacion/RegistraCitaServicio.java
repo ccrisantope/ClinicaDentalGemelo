@@ -1,5 +1,6 @@
 package medicasoft.capa2_aplicacion;
 
+import java.util.Date;
 import medicasoft.Capa3_Dominio.Cita;
 import medicasoft.Capa3_Dominio.Dentista;
 import medicasoft.Capa3_Dominio.Paciente;
@@ -34,6 +35,14 @@ public class RegistraCitaServicio {
         AccesoDatosJDBC.cerrarConexion();
         return cita;
     }
+    public int BuscarCitasDiaServicio(Date fecha) throws Exception {
+        AccesoDatosJDBC.abrirConexion();
+        
+        java.sql.Date fec= new java.sql.Date(fecha.getTime());
+        int citas = CitaPostgresSQL.consultarTotalDeCitas(fec);
+        AccesoDatosJDBC.cerrarConexion();
+        return citas;
+    }
 
     public Dentista BuscarDentista(String codigo) throws Exception {
         AccesoDatosJDBC.abrirConexion();
@@ -48,11 +57,23 @@ public class RegistraCitaServicio {
         AccesoDatosJDBC.cerrarConexion();
         return paciente;
     }
+    
     public TipoCita BuscarTipoCita(String descripcion) throws Exception {
         AccesoDatosJDBC.abrirConexion();
         TipoCita tipoCita = TipoCitaPostgresSQL.buscar(descripcion);
         AccesoDatosJDBC.cerrarConexion();
         return tipoCita;
+    }
+    
+    public void listarTipoHorarios(JComboBox cboLista, java.sql.Date fecha) throws Exception {
+        
+        System.out.println("PRE");
+        AccesoDatosJDBC.abrirConexion();
+        System.out.println("LLAMADO A TSLQ");
+        CitaPostgresSQL.listarHorario(cboLista,fecha);
+        System.out.println("POST");
+        AccesoDatosJDBC.cerrarConexion();
+        //return tipoCita;
     }
     public void listarTipoCita(JComboBox cboLista) throws Exception {
         System.out.println("PRE");
