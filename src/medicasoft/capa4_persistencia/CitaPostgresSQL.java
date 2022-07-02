@@ -8,6 +8,7 @@ import medicasoft.Capa3_Dominio.Dentista;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import javax.swing.JComboBox;
 
 
 
@@ -25,13 +26,15 @@ public class CitaPostgresSQL {
         Date fec= new Date(cita.getFecha().getTime());
         Time hora= new Time(cita.getHora().getTime());
         fec.toString();
+        
         System.out.println(cita.toString());
         System.out.println(fec.toString());
         System.out.println(cita.toString());
+        
         PreparedStatement sentencia;
         try {
-            sentencia = accesoDatosJDBC.prepararSentencia(insertSQL);
             
+            sentencia = accesoDatosJDBC.prepararSentencia(insertSQL);
             sentencia.setString(1, cita.getCodigo());
             sentencia.setDouble(2, cita.getCosto());
             sentencia.setDouble(3, cita.getDescuento());
@@ -54,24 +57,58 @@ public class CitaPostgresSQL {
             throw new Exception("Error al intentar guardar la cita.", e);
         }
     }
-
-    public int consultarTotalDeCitas(Paciente paciente) throws Exception {
-        String consultaSQL = "select count(codigo) as total from cita where codigo = ?";
+    
+        public void listarHorario(JComboBox cboTipo, java.sql.Date fecha) throws Exception {
+        
+        String insertSQL = "select horasdisponibles from parametrohora except select hora from cita where cita.fecha= ? order by horasdisponibles";
+        System.out.println("ListarHora");
+        
+        
         PreparedStatement sentencia;
-        int totalDeCitas = 0;
         try {
-            sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
-            sentencia.setString(1, paciente.getDNI());
+            
+            sentencia = accesoDatosJDBC.prepararSentencia(insertSQL);
+            
+            sentencia.setDate(1,fecha);
+            System.out.println(sentencia.toString());
             ResultSet resultado = sentencia.executeQuery();
-            if (resultado.next()) {
-                totalDeCitas = resultado.getInt("total");
+
+            System.out.println(resultado.toString());
+            cboTipo.addItem("Seleccione una opcion:");
+            while (resultado.next()) {
+                cboTipo.addItem(resultado.getString("horasdisponibles"));
             }
-            return totalDeCitas;
+                //return tipoCita;
+            
+        } catch (Exception e) {
+            throw new Exception("Error al intentar al listar horas disponibles", e);
+        }
+    }
+    
+    public int consultarTotalDeCitas(Date  fecha) throws Exception {
+        String consultaSQL = "select count(cita) as total from cita where fecha = ?";
+        PreparedStatement sentencia2;
+        int totalDeCitas = 0;
+        Date fec= new Date(fecha.getTime());
+        try {
+            sentencia2 = accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia2.setDate(1, fec);
+            System.out.println(sentencia2.toString());
+            ResultSet resultado = sentencia2.executeQuery();
+            
+            if (resultado.next()) {
+                System.out.println("Citas antes:" + totalDeCitas);
+                totalDeCitas = resultado.getInt("total");
+                
+                System.out.println("Citas dia:" + totalDeCitas);
+                
+            }
+            
         } catch (Exception e) {
             throw new Exception("Error al intentar consultar citas", e);
         }
+        return totalDeCitas;
     }
-
     public Cita buscar(String codigo) throws Exception {
         String consultaSQL = "select codigo,costo, descuento,fecha, hora,observacion,tipocita" + "from cita where codigo = ?";
         PreparedStatement sentencia;

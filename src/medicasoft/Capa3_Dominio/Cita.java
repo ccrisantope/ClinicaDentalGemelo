@@ -124,8 +124,9 @@ public class Cita {
     }
 
   
-    public void calcularcostocitatotal() {
+    public double calcularcostocitatotal() {
        montototal = (costo - ((descuento*costo)/100));
+       return montototal;
         
     }
 

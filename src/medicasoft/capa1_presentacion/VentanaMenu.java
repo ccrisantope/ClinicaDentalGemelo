@@ -12,7 +12,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     public VentanaMenu() {
        initComponents();
         setLocationRelativeTo(null);
-       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       
     }
 
     /**

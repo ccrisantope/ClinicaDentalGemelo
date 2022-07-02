@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package medicasoft.capa4_persistencia;
 
 import java.sql.PreparedStatement;
@@ -9,10 +6,7 @@ import java.sql.ResultSet;
 import javax.swing.*;
 import medicasoft.Capa3_Dominio.TipoCita;
 
-/**
- *
- * @author Cristhian
- */
+
 public class TipoCitaPostgresSQL {
     private AccesoDatosJDBC accesoDatosJDBC;
 

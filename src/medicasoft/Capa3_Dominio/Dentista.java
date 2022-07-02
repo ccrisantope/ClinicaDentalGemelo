@@ -14,6 +14,11 @@ public class Dentista {
 
 	}
 
+    public Dentista(String codigo) {
+        this.codigo = codigo;
+    }
+       
+
     public String getCodigo() {
         return codigo;
     }
@@ -49,6 +54,7 @@ public class Dentista {
     }
     public boolean tienecodigoValido(){
 		return codigo.length()==4;
+                
 	}
-
+    
 }//end Dentista

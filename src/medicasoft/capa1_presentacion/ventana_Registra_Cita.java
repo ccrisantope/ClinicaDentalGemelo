@@ -8,6 +8,8 @@ import medicasoft.Capa3_Dominio.TipoCita;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import medicasoft.Capa3_Dominio.TipoCita;
 
@@ -50,6 +52,8 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         txtDescuento = new javax.swing.JTextField();
         txtMontoTotal1 = new javax.swing.JTextField();
+        cboHora = new javax.swing.JComboBox<>();
+        btnBuscarHora = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -60,9 +64,19 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
         txtcodigo.setBorder(javax.swing.BorderFactory.createTitledBorder("CODIGO:"));
+        txtcodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcodigoActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 156, -1));
 
         txtcosto.setBorder(javax.swing.BorderFactory.createTitledBorder("COSTO:"));
+        txtcosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcostoActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtcosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 156, -1));
 
         cbotipocita.setBorder(javax.swing.BorderFactory.createTitledBorder("TIPO DE CITA:"));
@@ -101,6 +115,11 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 600, -1, -1));
 
         cdfecha.setBorder(javax.swing.BorderFactory.createTitledBorder("CALENDARIO:"));
+        cdfecha.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                cdfechaVetoableChange(evt);
+            }
+        });
         getContentPane().add(cdfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 136, -1));
 
         txtdnipaciente.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI DEL PACIENTE:"));
@@ -185,7 +204,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, -1, -1));
 
         txthora.setBorder(javax.swing.BorderFactory.createTitledBorder("HORA:"));
-        getContentPane().add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 118, -1));
+        getContentPane().add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 118, -1));
 
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +224,21 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         txtMontoTotal1.setBorder(javax.swing.BorderFactory.createTitledBorder("Monto Total:"));
         getContentPane().add(txtMontoTotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 510, 135, -1));
 
+        cboHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboHoraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cboHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 120, 30));
+
+        btnBuscarHora.setText("Buscar Horario ");
+        btnBuscarHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarHoraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscarHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, -1, -1));
+
         setSize(new java.awt.Dimension(785, 700));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -213,6 +247,7 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
          try {
             System.out.println("PRE");
             registrarCitaServicio.listarTipoCita(cbotipocita);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar combobox", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
@@ -240,7 +275,9 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
             return;
         }
         try {
+            
             guardarCita();
+            
             inicializarNuevoCita();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -314,15 +351,43 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescuentoActionPerformed
+
+    private void txtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcostoActionPerformed
+
+    private void cdfechaVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_cdfechaVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cdfechaVetoableChange
+
+    private void txtcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcodigoActionPerformed
+
+    private void btnBuscarHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHoraActionPerformed
+            java.sql.Date fec= new java.sql.Date(cdfecha.getDate().getTime());
+        try {
+            registrarCitaServicio.listarTipoHorarios(cboHora,fec);
+        } catch (Exception ex) {
+            Logger.getLogger(ventana_Registra_Cita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarHoraActionPerformed
+
+    private void cboHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHoraActionPerformed
+      
+        
+    }//GEN-LAST:event_cboHoraActionPerformed
     private void guardarCita() throws Exception, HeadlessException {
+        
         registrarCitaServicio.GuadarCita(cita);
+        
         JOptionPane.showMessageDialog(this, "Se guardo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void capturarDatosDeCita() throws NumberFormatException {
         try{
         String sc=new String();
-        sc=txthora.getText().trim();
+        sc=cboHora.getSelectedItem().toString();
         Date hour = new SimpleDateFormat("HH:mm").parse(sc);
         cita.setCodigo(txtcodigo.getText().trim());
         cita.setCosto(Double.parseDouble(txtcosto.getText().trim()));
@@ -332,12 +397,13 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
         cita.setHora(hour);
         
         cita.setFecha(cdfecha.getDate());
+        registrarCitaServicio.BuscarCitasDiaServicio(cdfecha.getDate());
         
         cita.m_Paciente.setDNI(txtdnipaciente.getText());
         cita.m_Dentista.setCodigo(txtcodigodentista.getText());
         cita.m_TipoCita.setDescripcion(cbotipocita.getSelectedItem().toString());
-        cita.calcularcostocitatotal();
-        txtMontoTotal1.setText(String.format("%.2f", cita.getMontototal()));
+        double monto=cita.calcularcostocitatotal();
+        txtMontoTotal1.setText(String.format("%.2f", monto));
         
         //System.out.println(cita.toString());
         }catch(Exception e){
@@ -363,11 +429,13 @@ public class ventana_Registra_Cita extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarHora;
     private javax.swing.JButton btnbuscardentista;
     private javax.swing.JButton btnbuuscarpaciente;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JComboBox<String> cboHora;
     private javax.swing.JComboBox<String> cbotipocita;
     private com.toedter.calendar.JDateChooser cdfecha;
     private javax.swing.JCheckBox jCheckBox1;
